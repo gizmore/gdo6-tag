@@ -1,11 +1,11 @@
 <?php
-use GDO\Tag\GDO_Tag;
-$field instanceof GDO_Tag;
+use GDO\Tag\GDO_Tags;
+$field instanceof GDO_Tags;
 $id = 'gwftag_'.$field->name; ?>
 <md-input-container
  class="md-block md-float md-icon-left<?= $field->classError(); ?>" flex
- ng-controller="GWFTagCtrl"
- ng-init='init("#<?= $id; ?>", <?= $field->initJSON(); ?>)'>
+ ng-controller="GDOTagCtrl"
+ ng-init='init("#<?= $id; ?>", <?= $field->renderJSON(); ?>)'>
   <label for="form[<?= $field->name; ?>]"><?= $field->label; ?></label>
   <?= $field->htmlIcon(); ?>
   <md-chips
@@ -16,7 +16,7 @@ $id = 'gwftag_'.$field->name; ?>
    md-add-on-blur="true"
    md-max-chips="<?= $field->maxTags; ?>"
    readonly="<?= $field->writable?'false':'true'; ?>"
-   required="<?= $field->null?'false':'true'; ?>"
+   <?= $field->htmlRequired(); ?>
    placeholder="<?= $field->label; ?>">
    <md-autocomplete
     md-search-text="searchText"
@@ -31,7 +31,7 @@ $id = 'gwftag_'.$field->name; ?>
    id="<?= $id; ?>"
    name="form[<?= $field->name; ?>]"
    value="<?= $field->displayVar(); ?>"
-   <?= $field->htmlRequired(); ?>
    <?= $field->htmlDisabled(); ?>/>
   <div class="gdo-form-error"><?= $field->error; ?></div>
 </md-input-container>
+
