@@ -39,7 +39,7 @@ final class Tag extends GDO
 	{
 		if (!($cache = Cache::get('gwf_tags')))
 		{
-			$cache = self::table()->select('tag_name, tag_id, tag_count')->exec()->fetchAllArray2dObject();
+		    $cache = self::table()->select('tag_name, tag_id, tag_count')->exec()->fetchAllArrayAssoc2dObject();
 			Cache::set('gwf_tags', $cache);
 		}
 		return $cache;
