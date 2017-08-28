@@ -6,6 +6,7 @@ use GDO\DB\GDO;
 use GDO\DB\GDO_CreatedAt;
 use GDO\DB\GDO_CreatedBy;
 use GDO\DB\GDO_Object;
+use GDO\Core\ModuleLoader;
 
 class TagTable extends GDO
 {
@@ -43,13 +44,13 @@ class TagTable extends GDO
 	public static function allTagTables()
 	{
 		$tables = [];
-		foreach (Application::instance()->getActiveModules() as $module)
+		foreach (ModuleLoader::instance()->getActiveModules() as $module)
 		{
 			if ($classes = $module->getClasses())
 			{
 				foreach ($classes as $className)
 				{
-					if (is_subclass_of($className, 'TagTable'))
+					if (is_subclass_of($className, 'GDO\Tag\TagTable'))
 					{
 						$tables[] = GDO::tableFor($className);
 					}
