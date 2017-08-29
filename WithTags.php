@@ -7,24 +7,24 @@ trait WithTags
 {
 	public function getTags()
 	{
-		return Tag::forObject($this);
+	    return GDO_Tag::forObject($this);
 	}
 	
 	public function updateTags(array $newTags)
 	{
 		$table = $this->gdoTagTable();
-		$table instanceof TagTable;
+		$table instanceof GDO_TagTable;
 		
 		$oldTags = array_keys($this->getTags());
 
 		$new = array_diff($newTags, $oldTags);
 		$deleted = array_diff($oldTags, $newTags);
-		$all = Tag::table()->all();
+		$all = GDO_Tag::table()->all();
 		foreach ($new as $tagName)
 		{
 			if (!($tag = (@$all[$tagName])))
 			{
-				$tag = Tag::blank(['tag_name'=>$tagName])->insert();
+			    $tag = GDO_Tag::blank(['tag_name'=>$tagName])->insert();
 				$all[$tagName] = $tag;
 			}
 			else
@@ -47,9 +47,9 @@ trait WithTags
 		{
 			$tags[$tagName] = $all[$tagName];
 		}
-		$this->tempSet('gwf_tags', $tags);
-		$this->table()->tempUnset('gwf_tags');
+		$this->tempSet('gdo_tags', $tags);
+		$this->table()->tempUnset('gdo_tags');
 // 		$this->recache();
-		Cache::set('gwf_tags', $all);
+		Cache::set('gdo_tags', $all);
 	}
 }

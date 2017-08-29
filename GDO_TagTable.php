@@ -1,14 +1,13 @@
 <?php
 namespace GDO\Tag;
 
-use GDO\Core\Application;
 use GDO\DB\GDO;
 use GDO\DB\GDT_CreatedAt;
 use GDO\DB\GDT_CreatedBy;
 use GDO\DB\GDT_Object;
 use GDO\Core\ModuleLoader;
 
-class TagTable extends GDO
+class GDO_TagTable extends GDO
 {
 	/**
 	 * @return GDO
@@ -20,7 +19,7 @@ class TagTable extends GDO
 	public function gdoColumns()
 	{
 		return array(
-			GDT_Object::make('tag_tag')->table(Tag::table()),
+			GDT_Object::make('tag_tag')->table(GDO_Tag::table()),
 			GDT_TagTable::make('tag_object')->table($this->gdoTagObjectTable()),
 			GDT_CreatedBy::make('tag_created_by'),
 			GDT_CreatedAt::make('tag_created_at'),
@@ -30,16 +29,16 @@ class TagTable extends GDO
 	public function allObjectTags()
 	{
 		$table = $this->gdoTagObjectTable();
-		if (!($cache = $table->tempGet('gwf_tags')))
+		if (!($cache = $table->tempGet('gdo_tags')))
 		{
-			$cache = $this->select('tag_name, tag_id, COUNT(*) tag_count')->joinObject('tag_tag')->group('tag_id')->exec()->fetchAllArray2dObject(Tag::table());
-			$table->tempSet('gwf_tags', $cache);
+			$cache = $this->select('tag_name, tag_id, COUNT(*) tag_count')->joinObject('tag_tag')->group('tag_id')->exec()->fetchAllArray2dObject(GDO_Tag::table());
+			$table->tempSet('gdo_tags', $cache);
 		}
 		return $cache;
 	}
 	
 	/**
-	 * @return TagTable[]
+	 * @return self[]
 	 */
 	public static function allTagTables()
 	{
@@ -50,7 +49,7 @@ class TagTable extends GDO
 			{
 				foreach ($classes as $className)
 				{
-					if (is_subclass_of($className, 'GDO\Tag\TagTable'))
+					if (is_subclass_of($className, 'GDO\Tag\GDO_TagTable'))
 					{
 						$tables[] = GDO::tableFor($className);
 					}

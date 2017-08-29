@@ -9,7 +9,7 @@ use GDO\Form\GDT_Submit;
 use GDO\Form\MethodForm;
 use GDO\Tag\GDT_Tag;
 use GDO\Tag\Module_Tag;
-use GDO\Tag\Tag;
+use GDO\Tag\GDO_Tag;
 use GDO\Util\Common;
 use GDO\Form\GDT_Validator;
 
@@ -19,13 +19,13 @@ final class AdminEdit extends MethodForm
 	
 	public function execute()
 	{
-		$this->gdo = Tag::table()->find(Common::getRequestString('id'));
+		$this->gdo = GDO_Tag::table()->find(Common::getRequestString('id'));
 		return Module_Tag::instance()->renderAdminTabs()->add(parent::execute());
 	}
 	
 	public function createForm(GDT_Form $form)
 	{
-		$tags = Tag::table();
+	    $tags = GDO_Tag::table();
 		$form->addFields($tags->gdoColumnsCache());
 		$form->addField(GDT_AntiCSRF::make());
 		$form->addField(GDT_Submit::make());

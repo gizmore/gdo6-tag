@@ -7,7 +7,7 @@ use GDO\DB\GDT_AutoInc;
 use GDO\Template\GDT_Template;
 use GDO\Type\GDT_Int;
 
-final class Tag extends GDO
+final class GDO_Tag extends GDO
 {
 	public function memCached() { return false; }
 	
@@ -33,14 +33,14 @@ final class Tag extends GDO
 	### Static ###
 	##############
 	/**
-	 * @return Tag[]
+	 * @return self[]
 	 */
 	public function all()
 	{
-		if (!($cache = Cache::get('gwf_tags')))
+		if (!($cache = Cache::get('gdo_tags')))
 		{
 		    $cache = self::table()->select('tag_name, tag_id, tag_count')->exec()->fetchAllArrayAssoc2dObject();
-			Cache::set('gwf_tags', $cache);
+			Cache::set('gdo_tags', $cache);
 		}
 		return $cache;
 	}
@@ -48,18 +48,18 @@ final class Tag extends GDO
 	/**
 	 * 
 	 * @param GDO $gdo
-	 * @return Tag[]
+	 * @return self[]
 	 */
 	public static function forObject(GDO $gdo=null)
 	{
 		if ($gdo)
 		{
-			if (!($cache = $gdo->tempGet('gwf_tags')))
+			if (!($cache = $gdo->tempGet('gdo_tags')))
 			{
 				$tags = $gdo->gdoTagTable();
-				$tags instanceof TagTable;
-				$cache = $tags->select('tag_name, tag_id, tag_count')->joinObject('tag_tag')->where("tag_object=".$gdo->getID())->exec()->fetchAllArray2dObject(Tag::table());
-				$gdo->tempSet('gwf_tags', $cache);
+				$tags instanceof GDO_TagTable;
+				$cache = $tags->select('tag_name, tag_id, tag_count')->joinObject('tag_tag')->where("tag_object=".$gdo->getID())->exec()->fetchAllArray2dObject(self::table());
+				$gdo->tempSet('gdo_tags', $cache);
 			}
 			return $cache;
 		}

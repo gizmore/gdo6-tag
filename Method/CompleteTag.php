@@ -2,7 +2,7 @@
 namespace GDO\Tag\Method;
 
 use GDO\GWF\MethodCompletion;
-use GDO\Tag\Tag;
+use GDO\Tag\GDO_Tag;
 
 final class CompleteTag extends MethodCompletion
 {
@@ -11,7 +11,7 @@ final class CompleteTag extends MethodCompletion
 		$q = $this->getSearchTerm();
 		$max = $this->getMaxSuggestions();
 		$result = [];
-		foreach (Tag::table()->all() as $tag)
+		foreach (GDO_Tag::table()->all() as $tag)
 		{
 			if ( (!$q) || (mb_stripos($tag->getName(), $q)!==false) )
 			{

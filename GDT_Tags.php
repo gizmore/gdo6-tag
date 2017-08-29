@@ -53,7 +53,7 @@ final class GDT_Tags extends GDT_Base
 	public function toJSON()
 	{
 		return array(
-            'all' => array_keys(Tag::table()->all()),
+		    'all' => array_keys(GDO_Tag::table()->all()),
 			'tags' => $this->getValue(),
 		);
 	}

@@ -7,7 +7,7 @@ class GDT_Tag extends GDT_Object
 {
 	public function __construct()
 	{
-		$this->table(Tag::table());
+	    $this->table(GDO_Tag::table());
 		$this->completionHref(href('Tag', 'CompleteTag'));
 	}
 	

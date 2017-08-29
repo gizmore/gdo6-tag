@@ -1,13 +1,13 @@
 <?php
 namespace GDO\Tag;
 
-use GDO\Core\Module;
+use GDO\Core\GDO_Module;
 
-final class Module_Tag extends Module
+final class Module_Tag extends GDO_Module
 {
 	public $module_priority = 40;
 	public function onLoadLanguage() { $this->loadLanguage('lang/tags'); }
-	public function getClasses() { return ['GDO\Tag\Tag']; }
+	public function getClasses() { return ['GDO\Tag\GDO_Tag']; }
 	
 	public function onIncludeScripts()
 	{
@@ -31,7 +31,7 @@ final class Module_Tag extends Module
 // 			{
 // 				foreach ($classes as $class)
 // 				{
-// 					if (is_subclass_of($class, 'TagTable'))
+// 					if (is_subclass_of($class, 'GDO\Tag\GDO_TagTable'))
 // 					{
 // 						$table = GDO::tableFor($class);
 // 						$query->join("RIGHT JOIN {$table->gdoTableIdentifier()} ON tag_tag=tag_id");

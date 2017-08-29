@@ -13,7 +13,7 @@ class GDT_TagCloud extends GDT_Template
 	}
 	
 	/**
-	 * @return Tag[]
+	 * @return GDO_Tag[]
 	 */
 	public function getTags()
 	{
@@ -21,7 +21,7 @@ class GDT_TagCloud extends GDT_Template
 	}
 	
 	/**
-	 * @return TagTable
+	 * @return GDO_TagTable
 	 */
 	public function getTagTable()
 	{
@@ -43,7 +43,7 @@ class GDT_TagCloud extends GDT_Template
 	}
 	
 	
-	public function hrefTagFilter(Tag $tag)
+	public function hrefTagFilter(GDO_Tag $tag)
 	{
 		$name = $this->name;
 		$url = preg_replace("/&f\\[$name\\]=\d+/", '', $_SERVER['REQUEST_URI']);
