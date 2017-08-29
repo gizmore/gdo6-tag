@@ -1,12 +1,12 @@
 <?php
 namespace GDO\Tag;
-use GDO\Type\GDO_Base;
-use GDO\Template\GDO_Template;
+use GDO\Type\GDT_Base;
+use GDO\Template\GDT_Template;
 use GDO\Form\WithIcon;
 use GDO\Form\WithFormFields;
 use GDO\UI\WithLabel;
 
-final class GDO_Tags extends GDO_Base
+final class GDT_Tags extends GDT_Base
 {
     use WithIcon;
     use WithLabel;
@@ -42,12 +42,12 @@ final class GDO_Tags extends GDO_Base
 	##############
 	public function renderForm()
 	{
-		return GDO_Template::php('Tag', 'form/tag.php', ['field' => $this]);
+		return GDT_Template::php('Tag', 'form/tag.php', ['field' => $this]);
 	}
 	
 	public function renderCell()
 	{
-	    return GDO_Template::php('Tags', 'cell/tag.php', ['field' => $this]);
+	    return GDT_Template::php('Tags', 'cell/tag.php', ['field' => $this]);
 	}
 	
 	public function toJSON()
@@ -68,7 +68,7 @@ final class GDO_Tags extends GDO_Base
 			return $this->error('err_max_tags', [$this->maxTags]);
 		}
 
-		$namefield = GDO_TagName::make();
+		$namefield = GDT_TagName::make();
 		foreach ($tags as $tagName)
 		{
 			if (!$namefield->validate($tagName))

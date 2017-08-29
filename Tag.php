@@ -3,9 +3,9 @@ namespace GDO\Tag;
 
 use GDO\DB\Cache;
 use GDO\DB\GDO;
-use GDO\DB\GDO_AutoInc;
-use GDO\Template\GDO_Template;
-use GDO\Type\GDO_Int;
+use GDO\DB\GDT_AutoInc;
+use GDO\Template\GDT_Template;
+use GDO\Type\GDT_Int;
 
 final class Tag extends GDO
 {
@@ -14,9 +14,9 @@ final class Tag extends GDO
 	public function gdoColumns()
 	{
 		return array(
-			GDO_AutoInc::make('tag_id'),
-			GDO_TagName::make('tag_name')->notNull()->unique(),
-			GDO_Int::make('tag_count')->unsigned()->notNull()->initial('1')->writable(false),
+			GDT_AutoInc::make('tag_id'),
+			GDT_TagName::make('tag_name')->notNull()->unique(),
+			GDT_Int::make('tag_count')->unsigned()->notNull()->initial('1')->writable(false),
 		);
 	}
 	
@@ -25,7 +25,7 @@ final class Tag extends GDO
 	public function getCount() { return $this->getVar('tag_count'); }
 	
 	public function displayName() { return $this->getName(); }
-	public function renderCell() { return GDO_Template::php('Tag', 'cell/tag.php', ['field' => $this]); }
+	public function renderCell() { return GDT_Template::php('Tag', 'cell/tag.php', ['field' => $this]); }
 	
 	public function href_edit() {return href('Tag', 'AdminEdit', '&id='.$this->getID()); }
 	

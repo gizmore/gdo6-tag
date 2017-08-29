@@ -3,9 +3,9 @@ namespace GDO\Tag;
 
 use GDO\Core\Application;
 use GDO\DB\GDO;
-use GDO\DB\GDO_CreatedAt;
-use GDO\DB\GDO_CreatedBy;
-use GDO\DB\GDO_Object;
+use GDO\DB\GDT_CreatedAt;
+use GDO\DB\GDT_CreatedBy;
+use GDO\DB\GDT_Object;
 use GDO\Core\ModuleLoader;
 
 class TagTable extends GDO
@@ -20,10 +20,10 @@ class TagTable extends GDO
 	public function gdoColumns()
 	{
 		return array(
-			GDO_Object::make('tag_tag')->table(Tag::table()),
-			GDO_TagTable::make('tag_object')->table($this->gdoTagObjectTable()),
-			GDO_CreatedBy::make('tag_created_by'),
-			GDO_CreatedAt::make('tag_created_at'),
+			GDT_Object::make('tag_tag')->table(Tag::table()),
+			GDT_TagTable::make('tag_object')->table($this->gdoTagObjectTable()),
+			GDT_CreatedBy::make('tag_created_by'),
+			GDT_CreatedAt::make('tag_created_at'),
 		);
 	}
 	

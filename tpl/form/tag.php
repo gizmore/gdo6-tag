@@ -1,6 +1,6 @@
 <?php
-use GDO\Tag\GDO_Tags;
-$field instanceof GDO_Tags;
+use GDO\Tag\GDT_Tags;
+$field instanceof GDT_Tags;
 $id = 'gwftag_'.$field->name; ?>
 <md-input-container
  class="md-block md-float md-icon-left<?= $field->classError(); ?>" flex

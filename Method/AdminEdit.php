@@ -3,15 +3,15 @@ namespace GDO\Tag\Method;
 
 use GDO\Core\Website;
 use GDO\DB\Database;
-use GDO\Form\GDO_AntiCSRF;
-use GDO\Form\GDO_Form;
-use GDO\Form\GDO_Submit;
+use GDO\Form\GDT_AntiCSRF;
+use GDO\Form\GDT_Form;
+use GDO\Form\GDT_Submit;
 use GDO\Form\MethodForm;
-use GDO\Tag\GDO_Tag;
+use GDO\Tag\GDT_Tag;
 use GDO\Tag\Module_Tag;
 use GDO\Tag\Tag;
 use GDO\Util\Common;
-use GDO\Form\GDO_Validator;
+use GDO\Form\GDT_Validator;
 
 final class AdminEdit extends MethodForm
 {
@@ -23,20 +23,20 @@ final class AdminEdit extends MethodForm
 		return Module_Tag::instance()->renderAdminTabs()->add(parent::execute());
 	}
 	
-	public function createForm(GDO_Form $form)
+	public function createForm(GDT_Form $form)
 	{
 		$tags = Tag::table();
 		$form->addFields($tags->gdoColumnsCache());
-		$form->addField(GDO_AntiCSRF::make());
-		$form->addField(GDO_Submit::make());
-		$form->addField(GDO_Submit::make('delete'));
-		$form->addField(GDO_Submit::make('merge'));
-		$form->addField(GDO_Tag::make('merge_tag'));
-		$form->addField(GDO_Validator::make()->validator('merge_tag', [$this, 'validateMergeTarget']));
+		$form->addField(GDT_AntiCSRF::make());
+		$form->addField(GDT_Submit::make());
+		$form->addField(GDT_Submit::make('delete'));
+		$form->addField(GDT_Submit::make('merge'));
+		$form->addField(GDT_Tag::make('merge_tag'));
+		$form->addField(GDT_Validator::make()->validator('merge_tag', [$this, 'validateMergeTarget']));
 		$form->withGDOValuesFrom($this->gdo);
 	}
 	
-	public function validateMergeTarget(GDO_Form $form, GDO_Tag $tag)
+	public function validateMergeTarget(GDT_Form $form, GDT_Tag $tag)
 	{
 		if (isset($_POST['merge']))
 		{
@@ -52,13 +52,13 @@ final class AdminEdit extends MethodForm
 		return true;
 	}
 	
-	public function formValidated(GDO_Form $form)
+	public function formValidated(GDT_Form $form)
 	{
 		$this->gdo->saveVars($form->getFormData());
 		return parent::formValidated($form);
 	}
 	
-	public function onSubmit_merge(GDO_Form $form)
+	public function onSubmit_merge(GDT_Form $form)
 	{
 // 		$mergeInto = $form->getField('merge_tag')->getValue();
 		
@@ -71,7 +71,7 @@ final class AdminEdit extends MethodForm
 // 		}
 	}
 
-	public function onSubmit_delete(GDO_Form $form)
+	public function onSubmit_delete(GDT_Form $form)
 	{
 		$this->gdo->delete();
 		$rows = Database::instance()->affectedRows();

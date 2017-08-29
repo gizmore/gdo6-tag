@@ -1,8 +1,8 @@
 <?php
-use GDO\Table\GDO_Table;
+use GDO\Table\GDT_Table;
 use GDO\Tag\Module_Tag;
 use GDO\Tag\Tag;
-use GDO\UI\GDO_Button;
+use GDO\UI\GDT_Button;
 use GDO\User\User;
 
 $user = User::current();
@@ -12,9 +12,9 @@ echo $module->renderAdminTabs();
 $gdo = Tag::table();
 $query = $gdo->select('*');
 
-$table = GDO_Table::make();
+$table = GDT_Table::make();
 $table->addFields($gdo->gdoColumnsCache());
-$table->addField(GDO_Button::make('edit'));
+$table->addField(GDT_Button::make('edit'));
 $table->filtered();
 $table->paginateDefault();
 $table->query($query);

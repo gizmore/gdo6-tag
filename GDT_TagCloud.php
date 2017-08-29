@@ -1,9 +1,9 @@
 <?php
 namespace GDO\Tag;
 use GDO\DB\WithObject;
-use GDO\Template\GDO_Template;
+use GDO\Template\GDT_Template;
 use GDO\DB\Query;
-class GDO_TagCloud extends GDO_Template
+class GDT_TagCloud extends GDT_Template
 {
 	use WithObject;
 	

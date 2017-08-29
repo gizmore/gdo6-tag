@@ -1,6 +1,6 @@
 <?php
-use GDO\Tag\GDO_TagCloud;
-$field instanceof GDO_TagCloud;
+use GDO\Tag\GDT_TagCloud;
+$field instanceof GDT_TagCloud;
 $filterValue = $field->filterValue();
 ?>
 <div class="gdo-tag-cloud">

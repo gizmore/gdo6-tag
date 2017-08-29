@@ -1,9 +1,9 @@
 <?php
 namespace GDO\Tag;
 
-use GDO\DB\GDO_Object;
+use GDO\DB\GDT_Object;
 
-class GDO_Tag extends GDO_Object
+class GDT_Tag extends GDT_Object
 {
 	public function __construct()
 	{
