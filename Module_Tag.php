@@ -11,7 +11,10 @@ final class Module_Tag extends GDO_Module
 	
 	public function onIncludeScripts()
 	{
-		$this->addJavascript('js/gwf-tag-ctrl.js');
+	    if (module_enabled('GWFAngular'))
+	    {
+	        $this->addJavascript('js/gwf-tag-ctrl.js');
+	    }
 	}
 	
 	public function href_administrate_module() { return href('Tag', 'AdminOverview'); }
