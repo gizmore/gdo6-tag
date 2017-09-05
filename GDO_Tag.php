@@ -37,7 +37,7 @@ final class GDO_Tag extends GDO
 	 */
 	public function all()
 	{
-		if (!($cache = Cache::get('gdo_tags')))
+		if (false === ($cache = Cache::get('gdo_tags')))
 		{
 		    $cache = self::table()->select('tag_name, tag_id, tag_count')->exec()->fetchAllArrayAssoc2dObject();
 			Cache::set('gdo_tags', $cache);
