@@ -3,8 +3,16 @@ namespace GDO\Tag;
 
 use GDO\DB\Cache;
 
+/**
+ * To make a GDO tagable:
+ * 1. Create a GDO extend GDO_TagTable
+ * 2. Implement gdoTagTable, e.g. return SomeGDO::table();
+ * @author gizmore
+ */
 trait WithTags
 {
+//     public function gdoTagTable() {}
+    
 	public function getTags()
 	{
 	    return GDO_Tag::forObject($this);
