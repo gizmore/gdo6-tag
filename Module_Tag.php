@@ -28,7 +28,7 @@ final class Module_Tag extends GDO_Module
 	public function hookClearCache()
 	{
 // 		$query = Tag::table()->update()->set("tag_count=COUNT(*)")->where('true')->group('tag_id');
-// 		foreach (Application::instance()->getActiveModules() as $module)
+// 		foreach (Application::instance()->getModules() as $module)
 // 		{
 // 			if ($classes = $module->getClasses())
 // 			{

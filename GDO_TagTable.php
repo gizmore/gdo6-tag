@@ -43,7 +43,7 @@ class GDO_TagTable extends GDO
 	public static function allTagTables()
 	{
 		$tables = [];
-		foreach (ModuleLoader::instance()->getActiveModules() as $module)
+		foreach (ModuleLoader::instance()->getModules() as $module)
 		{
 			if ($classes = $module->getClasses())
 			{
