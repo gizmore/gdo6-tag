@@ -12,43 +12,32 @@ final class GDT_Tags extends GDT_Base
     use WithLabel;
     use WithFormFields;
     
-	public function __construct()
-	{
-		$this->initial = '[]';
-	}
+    public $initial = '[]';
+
+	#############
+	### Event ###
+	#############
+	public function gdoAfterCreate() { $this->updateTags(); }
+	public function gdoAfterUpdate() { $this->updateTags(); }
+	public function updateTags() { $this->gdo->updateTags($this->getValue()); }
 	
-	public function toValue($var)
-	{
-		return ($tags = @json_decode($var)) ? $tags : [];
-	}
-	
-	public function toVar($value)
-	{
-		return json_encode(array_values($value));
-	}
+	#############
+	### Value ###
+	#############
+	public function toValue($var) { return ($tags = @json_decode($var)) ? $tags : []; }
+	public function toVar($value) { return json_encode(array_values($value)); }
 	
 	################
 	### Max Tags ###
 	################
 	public $maxTags = 10;
-	public function maxTags(int $maxTags)
-	{
-		$this->maxTags = $maxTags;
-		return $this;
-	}
+	public function maxTags(int $maxTags) { $this->maxTags = $maxTags; return $this; }
 	
 	##############
 	### Render ###
 	##############
-	public function renderForm()
-	{
-		return GDT_Template::php('Tag', 'form/tag.php', ['field' => $this]);
-	}
-	
-	public function renderCell()
-	{
-	    return GDT_Template::php('Tags', 'cell/tag.php', ['field' => $this]);
-	}
+	public function renderCell() { return GDT_Template::php('Tag', 'cell/tag.php', ['field' => $this]); }
+	public function renderForm() { return GDT_Template::php('Tag', 'form/tag.php', ['field' => $this]); }
 	
 	public function toJSON()
 	{
