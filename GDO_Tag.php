@@ -2,7 +2,7 @@
 namespace GDO\Tag;
 
 use GDO\DB\Cache;
-use GDO\DB\GDO;
+use GDO\Core\GDO;
 use GDO\DB\GDT_AutoInc;
 use GDO\Template\GDT_Template;
 use GDO\Type\GDT_Int;
