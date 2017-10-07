@@ -1,11 +1,19 @@
 <?php
 namespace GDO\Tag;
+
 use GDO\Core\GDT;
 use GDO\Core\GDT_Template;
 use GDO\UI\WithIcon;
 use GDO\Form\WithFormFields;
 use GDO\UI\WithLabel;
 
+/**
+ * A tag form input field.
+ * Updates an objects tagdata upon create and update.
+ * @author gizmore
+ * @since 3.00
+ * @version 6.05
+ */
 final class GDT_Tags extends GDT
 {
     use WithIcon;
@@ -13,7 +21,18 @@ final class GDT_Tags extends GDT
     use WithFormFields;
     
     public $initial = '[]';
-
+    
+    ################
+    ### TagTable ###
+    ################
+    /**
+     * Mandatory.
+     * The tagtable backing this tags input.
+     * @var \GDO\Tag\GDO_TagTable
+     */
+    public $tagtable;
+    public function tagtable(GDO_TagTable $tagtable) { $this->tagtable = $tagtable; return $this; }
+    
 	#############
 	### Event ###
 	#############
@@ -24,7 +43,14 @@ final class GDT_Tags extends GDT
 	#############
 	### Value ###
 	#############
-	public function toValue($var) { return ($tags = @json_decode($var)) ? $tags : []; }
+	public function toValue($var)
+	{
+		if ($var[0] === '[')
+		{
+			return ($tags = @json_decode($var)) ? $tags : [];
+		}
+		return array_map(function($a){return trim($a);}, explode(',', $var));
+	}
 	public function toVar($value) { return json_encode(array_values($value)); }
 	
 	################
@@ -36,8 +62,8 @@ final class GDT_Tags extends GDT
 	##############
 	### Render ###
 	##############
-	public function renderCell() { return GDT_Template::php('Tag', 'cell/tag.php', ['field' => $this]); }
-	public function renderForm() { return GDT_Template::php('Tag', 'form/tag.php', ['field' => $this]); }
+	public function renderCell() { return GDT_Template::php('Tag', 'cell/tags.php', ['field' => $this]); }
+	public function renderForm() { return GDT_Template::php('Tag', 'form/tags.php', ['field' => $this]); }
 	public function renderJSON()
 	{
 		return array(
