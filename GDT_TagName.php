@@ -1,7 +1,7 @@
 <?php
 namespace GDO\Tag;
 
-use GDO\Type\GDT_String;
+use GDO\DB\GDT_String;
 
 class GDT_TagName extends GDT_String
 {

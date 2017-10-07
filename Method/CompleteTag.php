@@ -1,7 +1,7 @@
 <?php
 namespace GDO\Tag\Method;
 
-use GDO\GWF\MethodCompletion;
+use GDO\Core\MethodCompletion;
 use GDO\Tag\GDO_Tag;
 
 final class CompleteTag extends MethodCompletion

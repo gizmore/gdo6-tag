@@ -1,12 +1,12 @@
 <?php
 namespace GDO\Tag;
-use GDO\Type\GDT_Base;
-use GDO\Template\GDT_Template;
-use GDO\Form\WithIcon;
+use GDO\Core\GDT;
+use GDO\Core\GDT_Template;
+use GDO\UI\WithIcon;
 use GDO\Form\WithFormFields;
 use GDO\UI\WithLabel;
 
-final class GDT_Tags extends GDT_Base
+final class GDT_Tags extends GDT
 {
     use WithIcon;
     use WithLabel;
@@ -31,7 +31,7 @@ final class GDT_Tags extends GDT_Base
 	### Max Tags ###
 	################
 	public $maxTags = 10;
-	public function maxTags(int $maxTags) { $this->maxTags = $maxTags; return $this; }
+	public function maxTags($maxTags) { $this->maxTags = $maxTags; return $this; }
 	
 	##############
 	### Render ###

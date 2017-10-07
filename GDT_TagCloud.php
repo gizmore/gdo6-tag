@@ -1,7 +1,7 @@
 <?php
 namespace GDO\Tag;
 use GDO\DB\WithObject;
-use GDO\Template\GDT_Template;
+use GDO\Core\GDT_Template;
 use GDO\DB\Query;
 class GDT_TagCloud extends GDT_Template
 {

@@ -4,8 +4,8 @@ namespace GDO\Tag;
 use GDO\DB\Cache;
 use GDO\Core\GDO;
 use GDO\DB\GDT_AutoInc;
-use GDO\Template\GDT_Template;
-use GDO\Type\GDT_Int;
+use GDO\Core\GDT_Template;
+use GDO\DB\GDT_Int;
 
 final class GDO_Tag extends GDO
 {
