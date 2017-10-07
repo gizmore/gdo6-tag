@@ -11,5 +11,5 @@ $filterValue = $field->filterValue();
     <span><?= $tag->displayName(); ?>(<?= $tag->getCount(); ?>)</span>
  </a>
 <?php endforeach; ?>
-  <input type="hidden" name="f[<?= $field->name; ?>]" value="<?= $field->displayFilterValue(); ?>" />
+  <input type="hidden" name="f[<?= $field->name; ?>]" value="<?= html($filterValue); ?>" />
 </div>

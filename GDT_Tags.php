@@ -38,8 +38,7 @@ final class GDT_Tags extends GDT
 	##############
 	public function renderCell() { return GDT_Template::php('Tag', 'cell/tag.php', ['field' => $this]); }
 	public function renderForm() { return GDT_Template::php('Tag', 'form/tag.php', ['field' => $this]); }
-	
-	public function toJSON()
+	public function renderJSON()
 	{
 		return array(
 		    'all' => array_keys(GDO_Tag::table()->all()),
