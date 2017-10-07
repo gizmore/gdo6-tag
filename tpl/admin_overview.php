@@ -4,6 +4,7 @@ use GDO\Tag\Module_Tag;
 use GDO\Tag\GDO_Tag;
 use GDO\UI\GDT_Button;
 use GDO\User\GDO_User;
+use GDO\Core\GDT_Fields;
 
 $user = GDO_User::current();
 $module = Module_Tag::instance();
@@ -13,8 +14,10 @@ $gdo = GDO_Tag::table();
 $query = $gdo->select('*');
 
 $table = GDT_Table::make();
-$table->addFields($gdo->gdoColumnsCache());
-$table->addField(GDT_Button::make('edit'));
+$headers = GDT_Fields::make();
+$headers->addFields($gdo->gdoColumnsCache());
+$headers->addField(GDT_Button::make('edit'));
+$table->headers($headers);
 $table->filtered();
 $table->paginateDefault();
 $table->query($query);

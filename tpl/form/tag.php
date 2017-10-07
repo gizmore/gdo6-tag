@@ -5,7 +5,7 @@ $id = 'gwftag_'.$field->name; ?>
 <md-input-container
  class="md-block md-float md-icon-left<?= $field->classError(); ?>" flex
  ng-controller="GDOTagCtrl"
- ng-init='init("#<?= $id; ?>", <?= $field->renderJSON(); ?>)'>
+ ng-init='init("#<?= $id; ?>", <?= $field->displayJSON(); ?>)'>
   <label for="form[<?= $field->name; ?>]"><?= $field->label; ?></label>
   <?= $field->htmlIcon(); ?>
   <md-chips

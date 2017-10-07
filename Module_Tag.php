@@ -21,7 +21,7 @@ final class Module_Tag extends GDO_Module
 	
 	public function renderAdminTabs()
 	{
-		return $this->templatePHP('admin_tabs.php');
+		return $this->responsePHP('admin_tabs.php');
 	}
 	
 	
