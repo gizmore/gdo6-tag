@@ -20,8 +20,6 @@ trait WithTags
 	
 	public function updateTags(array $newTags)
 	{
-		var_dump($newTags);
-		die();
 		$table = $this->gdoTagTable();
 		$table instanceof GDO_TagTable;
 		
@@ -59,7 +57,7 @@ trait WithTags
 		}
 		$this->tempSet('gdo_tags', $tags);
 		$this->table()->tempUnset('gdo_tags');
-// 		$this->recache();
+		$this->recache();
 		Cache::set('gdo_tags', $all);
 	}
 }
