@@ -6,6 +6,7 @@ use GDO\Core\GDT_Template;
 use GDO\UI\WithIcon;
 use GDO\Form\WithFormFields;
 use GDO\UI\WithLabel;
+use GDO\Util\Arrays;
 
 /**
  * A tag form input field.
@@ -45,17 +46,26 @@ final class GDT_Tags extends GDT
 	#############
 	public function toValue($var)
 	{
-		if ($var[0] === '[')
+		if (!empty($var))
 		{
-			return ($tags = @json_decode($var)) ? $tags : [];
+			if ($var[0] === '[')
+			{
+				$tags = ($tags = @json_decode($var)) ? $tags : [];
+			}
+			else
+			{
+				$tags = Arrays::explode($var);
+			}
+			return array_map(function($a){return trim($a);}, $tags);
 		}
-		return array_map(function($a){return trim($a);}, explode(',', $var));
 	}
 	public function toVar($value) { return json_encode(array_values($value)); }
 	
-	################
-	### Max Tags ###
-	################
+	####################
+	### Min/Max Tags ###
+	####################
+	public $minTags = 0;
+	public function minTags($minTags) { $this->minTags = $minTags; return $this; }
 	public $maxTags = 10;
 	public function maxTags($maxTags) { $this->maxTags = $maxTags; return $this; }
 	
@@ -77,20 +87,39 @@ final class GDT_Tags extends GDT
 	################
 	public function validate($tags)
 	{
-		if (count($tags) > $this->maxTags)
+		# Have to pass null check
+		if (parent::validate($tags))
 		{
-			return $this->error('err_max_tags', [$this->maxTags]);
-		}
-
-		$namefield = GDT_TagName::make();
-		foreach ($tags as $tagName)
-		{
-			if (!$namefield->validate($tagName))
+			# Has to be array
+			if (is_array($tags))
 			{
-				return $this->error('err_tag_name', [htmlspecialchars($tagName)]);
+				# Check forced tag count
+				if (count($tags) < $this->minTags)
+				{
+					return $this->error('err_min_tags', [$this->minTags]);
+				}
+				if (count($tags) > $this->maxTags)
+				{
+					return $this->error('err_max_tags', [$this->maxTags]);
+				}
+				
+				# Check individual tags
+				$namefield = GDT_TagName::make();
+				foreach ($tags as $tagName)
+				{
+					if (!$namefield->validate($tagName))
+					{
+						return $this->error('err_tag_name', [htmlspecialchars($tagName)]);
+					}
+				}
+				# winner winner
 			}
+			else
+			{
+				return $this->error('err_tags_not_an_array');
+			}
+			# chicken dinner
+			return true;
 		}
-		
-		return true;
 	}
 }

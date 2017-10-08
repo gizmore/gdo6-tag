@@ -20,6 +20,8 @@ trait WithTags
 	
 	public function updateTags(array $newTags)
 	{
+		var_dump($newTags);
+		die();
 		$table = $this->gdoTagTable();
 		$table instanceof GDO_TagTable;
 		

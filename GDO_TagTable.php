@@ -19,8 +19,8 @@ class GDO_TagTable extends GDO
 	public function gdoColumns()
 	{
 		return array(
-			GDT_Object::make('tag_tag')->table(GDO_Tag::table()),
-			GDT_TagTable::make('tag_object')->table($this->gdoTagObjectTable()),
+			GDT_Object::make('tag_tag')->table(GDO_Tag::table())->primary(),
+			GDT_TagTable::make('tag_object')->table($this->gdoTagObjectTable())->primary(),
 			GDT_CreatedBy::make('tag_created_by'),
 			GDT_CreatedAt::make('tag_created_at'),
 		);
