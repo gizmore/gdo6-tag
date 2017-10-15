@@ -11,7 +11,7 @@ final class Module_Tag extends GDO_Module
 	
 	public function onIncludeScripts()
 	{
-	    if (module_enabled('GWFAngular'))
+	    if (module_enabled('Angular'))
 	    {
 	        $this->addJavascript('js/gwf-tag-ctrl.js');
 	    }
