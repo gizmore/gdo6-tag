@@ -4,7 +4,7 @@
   <?php printf('%s(%d)', html($tagName), 3); ?>
 <?php endforeach; ?>
   <?= $field->htmlIcon(); ?>
-  <label for="form[<?= $field->name; ?>]"><?= $field->label; ?></label>
+  <label for="form[<?= $field->name; ?>]"><?= $field->displayLabel(); ?></label>
   <input
    type="text"
    name="form[<?= $field->name; ?>]"
