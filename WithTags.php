@@ -4,20 +4,42 @@ namespace GDO\Tag;
 use GDO\DB\Cache;
 
 /**
- * To make a GDO tagable:
- * 1. Create a GDO extend GDO_TagTable
- * 2. Implement gdoTagTable, e.g. return SomeGDO::table();
+ * To make your GDO taggable:
+ * 1. Your taggable GDO shall "use WithTags";
+ * 2. Create a Table/GDO for tag relations. Your GDOTagTable extends GDO_TagTable.
+ * 3. Implement the function gdoTagTable() in your taggable. E.g. return YourGDOTagTable::table();
+ * 
+ * To allow editing tags in a form:
+ * 1. Add a GDT_Tags::make() to your GDO columns.
+ * @see GDT_Tags
+ * 
+ * To display a tag cloud use GDT_TagCloud.
+ * @see GDT_TagCloud
+ * 
  * @author gizmore
+ * @version 6.10
+ * @since 6.03
  */
 trait WithTags
 {
-//     public function gdoTagTable() {}
+	### Abstract
+	#public function gdoTagTable() { return YourGDOTagTable::table(); }
     
+	###########
+	### Get ###
+	###########
+	/**
+	 * Get all tags for this object.
+	 * @return \GDO\Tag\GDO_Tag[]
+	 */
 	public function getTags()
 	{
 	    return GDO_Tag::forObject($this);
 	}
 	
+	##############
+	### Update ###
+	##############
 	public function updateTags(array $newTags)
 	{
 		$table = $this->gdoTagTable();

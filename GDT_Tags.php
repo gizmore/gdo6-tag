@@ -23,6 +23,8 @@ final class GDT_Tags extends GDT
     
     public $initial = '[]';
     
+    public function defaultLabel() { return $this->label('tags'); }
+    
     ################
     ### TagTable ###
     ################
@@ -58,6 +60,7 @@ final class GDT_Tags extends GDT
 			}
 			return array_map(function($a){return trim($a);}, $tags);
 		}
+		return [];
 	}
 	public function toVar($value) { return json_encode(array_values($value)); }
 	
