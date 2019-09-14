@@ -1,6 +1,7 @@
 <?php
-use GDO\Tag\GDT_Tag;
-$field instanceof GDT_Tag;
-?>
-<?php
-printf('%s (%s)', $field->displayName(), $field->getCount());
+use GDO\Tag\GDT_Tags;
+$field instanceof GDT_Tags;
+foreach ($field->gdo->getTags() as $tag)
+{
+	echo $tag->displayName();
+}

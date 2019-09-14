@@ -81,7 +81,7 @@ final class GDT_Tags extends GDT
 	{
 		return array(
 		    'all' => array_keys(GDO_Tag::table()->all()),
-			'tags' => $this->getValue(),
+			'tags' => $this->gdo ? array_values(array_map(function($tag){return $tag->getName();}, $this->gdo->getTags())) : $this->getValue(),
 		);
 	}
 	
@@ -125,4 +125,12 @@ final class GDT_Tags extends GDT
 			return true;
 		}
 	}
+	
+	public function renderHeader() { return $this->displayLabel(); }
+	
+	public function renderFilter()
+	{
+		return GDT_Template::php('Tag', 'filter/tags.php', ['field'=>$this]);
+	}
+	
 }
