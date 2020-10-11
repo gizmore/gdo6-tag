@@ -1,7 +1,7 @@
 <?php /** @var $field \GDO\Tag\GDT_Tags **/ ?>
 <div class="gdo-container<?= $field->classError(); ?>">
   <?= $field->htmlIcon(); ?>
-  <label for="form[<?= $field->name; ?>]"><?= $field->displayLabel(); ?></label>
+  <label <?=$field->htmlForID()?>><?= $field->displayLabel(); ?></label>
   <div>
 <?php $comma = ''; ?>
 <?php foreach ($field->tagtable->allObjectTags() as $tagName => $tagObj) : ?>
@@ -10,8 +10,9 @@
 <?php endforeach; ?>
   </div>
   <input
+   <?=$field->htmlID()?>
    type="text"
-   name="form[<?= $field->name; ?>]"
+   <?=$field->htmlFormName()?>
    size="64"
    <?= $field->htmlDisabled(); ?>
    <?= $field->htmlRequired(); ?>
