@@ -21,9 +21,13 @@ final class GDT_Tags extends GDT
     use WithLabel;
     use WithFormFields;
     
-    public $initial = '[]';
-    
     public function defaultLabel() { return $this->label('tags'); }
+    
+    public function __construct()
+    {
+        $this->icon = 'tag';
+        $this->initial = [];
+    }
     
     ################
     ### TagTable ###

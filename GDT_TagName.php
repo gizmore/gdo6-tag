@@ -7,8 +7,9 @@ class GDT_TagName extends GDT_String
 {
 	public function __construct()
 	{
-		$this->min = 1;
+		$this->min = 2;
 		$this->max = 28;
-		$this->pattern = "/^[a-z0-9]{1,28}$/i";
+		$this->caseI();
+		$this->pattern = "/^[a-z0-9][-_a-z0-9]{1,27}$/i";
 	}
 }
