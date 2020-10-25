@@ -38,7 +38,7 @@ final class AdminEdit extends MethodForm
 	
 	public function validateMergeTarget(GDT_Form $form, GDT_Tag $tag)
 	{
-		if (isset($_POST['merge']))
+		if (isset($_REQUEST['merge']))
 		{
 			if (!($other = $tag->getValue()))
 			{

@@ -1,8 +1,22 @@
 <?php
 namespace GDO\Tag;
+
 use GDO\DB\WithObject;
 use GDO\Core\GDT_Template;
 use GDO\DB\Query;
+
+/**
+ * Render a tag cloud.
+ * 
+ * @author gizmore
+ * @version 6.10
+ * @since 6.04
+ * 
+ * @see WithTags
+ * @see GDT_Tag
+ * @see GDO_Tag
+ * @see GDO_TagTable
+ */
 class GDT_TagCloud extends GDT_Template
 {
 	use WithObject;
@@ -28,9 +42,31 @@ class GDT_TagCloud extends GDT_Template
 		return $this->table->gdoTagTable();
 	}
 	
+	###################
+	### Total count ###
+	###################
+	public $totalCountCondition = '1';
+	public function totalCountCondition($totalCountCondition)
+	{
+	    $this->totalCountCondition = $totalCountCondition;
+	    return $this;
+	}
+	
+	public function totalCount()
+	{
+	    return $this->table->countWhere($this->totalCountCondition);
+	}
+	
 	##############
 	### Filter ###
 	##############
+	public $filterName = 'f';
+	public function filterName($filterName)
+	{
+	    $this->filterName = $filterName;
+	    return $this;
+	}
+	
 	public function filterQuery(Query $query)
 	{
 		if ($filterId = $this->filterValue())
@@ -43,11 +79,17 @@ class GDT_TagCloud extends GDT_Template
 	}
 	
 	
-	public function hrefTagFilter(GDO_Tag $tag)
+	public function hrefTagFilter(GDO_Tag $tag=null)
 	{
 		$name = $this->name;
-		$url = preg_replace("/&f\\[$name\\]=\d+/", '', $_SERVER['REQUEST_URI']);
+		$f = $this->filterName;
+		$url = preg_replace("/&$f\\[$name\\]=\d+/", '', @$_SERVER['REQUEST_URI']);
 		$url = preg_replace("/&page=\d+/", '', $url);
-		return $url . "&f[$name]=" . $tag->getID(); 
+		if ($tag)
+		{
+		    $url .= "&{$f}[$name]=" . $tag->getID();
+		}
+		return $url;
 	}
+
 }
