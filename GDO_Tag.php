@@ -42,6 +42,10 @@ final class GDO_Tag extends GDO
 		    $cache = self::table()->select('tag_name, tag_id, tag_count')->exec()->fetchAllArrayAssoc2dObject();
 			Cache::set('gdo_tags', $cache);
 		}
+		else
+		{
+		    Cache::heat('gdo_tags', $cache);
+		}
 		return $cache;
 	}
 	
