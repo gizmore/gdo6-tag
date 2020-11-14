@@ -3,5 +3,5 @@
  name="f[<?= $field->name?>]"
  type="text"
  size="16>"
- value="<?= html($field->filterValue()); ?>"
+ value="<?= html($field->filterVar()); ?>"
  placeholder="<?=t('tag_filter')?>" />

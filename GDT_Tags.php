@@ -132,9 +132,9 @@ final class GDT_Tags extends GDT
 	
 	public function renderHeader() { return $this->displayLabel(); }
 	
-	public function renderFilter()
+	public function renderFilter($f)
 	{
-		return GDT_Template::php('Tag', 'filter/tags.php', ['field'=>$this]);
+		return GDT_Template::php('Tag', 'filter/tags.php', ['field' => $this, 'f' => $f]);
 	}
 	
 }
