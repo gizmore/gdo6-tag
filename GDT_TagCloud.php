@@ -21,7 +21,7 @@ class GDT_TagCloud extends GDT_Template
 {
 	use WithObject;
 	
-	public function __construct()
+	protected function __construct()
 	{
 		$this->template('Tag', 'cell/tag_cloud.php', ['field'=>$this]);
 	}

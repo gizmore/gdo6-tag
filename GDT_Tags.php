@@ -23,7 +23,7 @@ final class GDT_Tags extends GDT
     
     public function defaultLabel() { return $this->label('tags'); }
     
-    public function __construct()
+    protected function __construct()
     {
         $this->icon = 'tag';
         $this->initial = [];

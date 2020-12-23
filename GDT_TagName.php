@@ -5,7 +5,7 @@ use GDO\DB\GDT_String;
 
 class GDT_TagName extends GDT_String
 {
-	public function __construct()
+	protected function __construct()
 	{
 		$this->min = 2;
 		$this->max = 28;

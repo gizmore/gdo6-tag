@@ -5,7 +5,7 @@ use GDO\DB\GDT_Object;
 
 class GDT_Tag extends GDT_Object
 {
-	public function __construct()
+	protected function __construct()
 	{
 // 	    parent::__construct();
 	    $this->icon('tag');
