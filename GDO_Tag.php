@@ -1,7 +1,6 @@
 <?php
 namespace GDO\Tag;
 
-use GDO\DB\Cache;
 use GDO\Core\GDO;
 use GDO\DB\GDT_AutoInc;
 use GDO\Core\GDT_Template;
@@ -32,22 +31,6 @@ final class GDO_Tag extends GDO
 	##############
 	### Static ###
 	##############
-	/**
-	 * @return self[]
-	 */
-	public function all()
-	{
-		if (false === ($cache = Cache::get('gdo_tags')))
-		{
-		    $cache = self::table()->select('tag_name, tag_id, tag_count')->exec()->fetchAllArrayAssoc2dObject();
-			Cache::set('gdo_tags', $cache);
-		}
-		else
-		{
-		    Cache::heat('gdo_tags', $cache);
-		}
-		return $cache;
-	}
 	
 	/**
 	 * 
