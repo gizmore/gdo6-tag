@@ -28,9 +28,9 @@ final class AdminEdit extends MethodForm
 	    $tags = GDO_Tag::table();
 		$form->addFields($tags->gdoColumnsCache());
 		$form->addField(GDT_AntiCSRF::make());
-		$form->addField(GDT_Submit::make());
-		$form->addField(GDT_Submit::make('delete'));
-		$form->addField(GDT_Submit::make('merge'));
+		$form->actions()->addField(GDT_Submit::make());
+		$form->actions()->addField(GDT_Submit::make('delete'));
+		$form->actions()->addField(GDT_Submit::make('merge'));
 		$form->addField(GDT_Tag::make('merge_tag'));
 		$form->addField(GDT_Validator::make()->validator('merge_tag', [$this, 'validateMergeTarget']));
 		$form->withGDOValuesFrom($this->gdo);
