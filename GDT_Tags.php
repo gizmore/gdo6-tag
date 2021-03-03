@@ -11,9 +11,11 @@ use GDO\Util\Arrays;
 /**
  * A tag form input field.
  * Updates an objects tagdata upon create and update.
+ * 
  * @author gizmore
+ * @version 6.10
  * @since 3.00
- * @version 6.05
+ * @see WithTags
  */
 final class GDT_Tags extends GDT
 {
@@ -25,6 +27,7 @@ final class GDT_Tags extends GDT
     
     protected function __construct()
     {
+        parent::__construct();
         $this->icon = 'tag';
         $this->initial = [];
     }
@@ -66,7 +69,14 @@ final class GDT_Tags extends GDT
 		}
 		return [];
 	}
-	public function toVar($value) { return json_encode(array_values($value)); }
+	
+	public function toVar($value)
+	{
+	    if ($value !== null)
+	    {
+	        return json_encode(array_values($value));
+	    }
+	}
 	
 	####################
 	### Min/Max Tags ###
