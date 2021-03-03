@@ -29,7 +29,7 @@ final class GDT_Tags extends GDT
     {
         parent::__construct();
         $this->icon = 'tag';
-        $this->initial = [];
+        $this->initial = '[]';
     }
     
     ################
