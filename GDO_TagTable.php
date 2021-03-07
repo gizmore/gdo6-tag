@@ -31,7 +31,7 @@ class GDO_TagTable extends GDO
 		$table = $this->gdoTagObjectTable();
 		if (!($cache = $table->tempGet('gdo_tags')))
 		{
-			$cache = $this->select('tag_id, tag_name, COUNT(*) tag_count')->joinObject('tag_tag')->group('tag_id')->exec()->fetchAllArray2dObject(GDO_Tag::table());
+			$cache = $this->select('tag_id, tag_name, COUNT(tag_id) tag_count')->joinObject('tag_tag')->group('tag_id, tag_name')->exec()->fetchAllArray2dObject(GDO_Tag::table());
 			$table->tempSet('gdo_tags', $cache);
 		}
 		return $cache;
