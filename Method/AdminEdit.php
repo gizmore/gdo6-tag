@@ -20,7 +20,7 @@ final class AdminEdit extends MethodForm
 	public function execute()
 	{
 		$this->gdo = GDO_Tag::table()->find(Common::getRequestString('id'));
-		return Module_Tag::instance()->renderAdminTabs()->add(parent::execute());
+		return Module_Tag::instance()->renderAdminTabs()->addField(parent::execute());
 	}
 	
 	public function createForm(GDT_Form $form)
@@ -75,7 +75,7 @@ final class AdminEdit extends MethodForm
 	{
 		$this->gdo->delete();
 		$rows = Database::instance()->affectedRows();
-		return $this->message('msg_tag_deleted', [$rows])->add(Website::redirectMessage(href('Tag', 'AdminOverview')));
+		return $this->message('msg_tag_deleted', [$rows])->addField(Website::redirectMessage(href('Tag', 'AdminOverview')));
 	}
 
 }
