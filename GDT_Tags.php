@@ -23,6 +23,9 @@ final class GDT_Tags extends GDT
     use WithLabel;
     use WithFormFields;
     
+    public $writable = true;
+    public $editable = true;
+    
     public function defaultLabel() { return $this->label('tags'); }
     
     protected function __construct()

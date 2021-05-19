@@ -81,6 +81,5 @@ trait WithTags
 		$this->table()->tempUnset('gdo_tags');
 		$this->recache();
 		Cache::set('gdo_tags', $all);
-		Cache::heat('gdo_tags', $tags);
 	}
 }
