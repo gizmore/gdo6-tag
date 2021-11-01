@@ -32,7 +32,7 @@ final class Module_Tag extends GDO_Module
 	        if (Module_Angular::instance()->cfgIncludeScripts() ||
 	            Application::instance()->hasTheme('material'))
 	        {
-    	        $this->addJavascript('js/gwf-tag-ctrl.js');
+    	        $this->addJS('js/gwf-tag-ctrl.js');
 	        }
 	    }
 	}
