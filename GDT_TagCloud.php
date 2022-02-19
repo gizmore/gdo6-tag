@@ -83,7 +83,7 @@ class GDT_TagCloud extends GDT_Template
 	{
 		$name = $this->name;
 		$f = $this->filterName;
-		$url = preg_replace("/&$f\\[$name\\]=\d+/", '', @$_SERVER['REQUEST_URI']);
+		$url = preg_replace("/&$f\\[$name\\]=\d+/", '', urldecode($_SERVER['REQUEST_URI']));
 		$url = preg_replace("/&page=\d+/", '', $url);
 		if ($tag)
 		{
